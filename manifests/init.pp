@@ -4,7 +4,9 @@
 
 # modules_dir { "resolvconf": }
 
-define resolveconf (
+class resolvconf {}
+
+define resolvconf::create (
     $domain='glei.ch', 
     $search='glei.ch',
     $nameserver1='212.103.67.60',  
