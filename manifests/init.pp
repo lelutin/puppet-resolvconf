@@ -14,7 +14,7 @@ class resolvconf {
         default => $resolvconf_search,
     }
     $real_resolvconf_nameservers = $resolvconf_nameservers ? {
-        ''  => '212.103.67.60:212.103.67.61:212.103.72.231:192.168.1.104',
+        ''  => '212.103.67.60:212.103.67.61',
         default => $resolvconf_nameservers,
     }
 
