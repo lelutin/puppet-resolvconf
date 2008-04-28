@@ -2,7 +2,9 @@
 
 domain <%= real_resolvconf_domain %>
 search <%= real_resolvconf_search %>
-nameserver <%= real_resolvconf_nameserver1 %>
-nameserver <%= real_resolvconf_nameserver2 %>
-nameserver <%= real_resolvconf_nameserver3 %>
+
+<% real_resolvconf_nameservers.split(':').each do |val| -%> 
+nameserver <%= val %> 
+<% end -%>
+
 
