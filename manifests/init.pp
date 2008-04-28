@@ -13,9 +13,9 @@ class resolvconf {
         ''  => 'glei.ch',
         default => $resolvconf_search,
     }
-    $real_resolvconf_nameservers ? $resolvconf_nameservers ? {
+    $real_resolvconf_nameservers = $resolvconf_nameservers ? {
         ''  => '212.103.67.60:212.103.67.61:212.103.72.231:192.168.1.104',
-        default => $resolvconf_nameserver1,
+        default => $resolvconf_nameservers,
     }
 
 #    $real_resolvconf_nameserver1 = $resolvconf_nameserver1 ? {
