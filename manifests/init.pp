@@ -13,7 +13,7 @@ class resolvconf {
         ''  => 'glei.ch',
         default => $resolvconf_search,
     }
-    notice("real_resolvconf_nameservers: $real_resolvconf_nameservers")
+    notice("resolvconf_nameservers: $resolvconf_nameservers")
     $real_resolvconf_nameservers = $resolvconf_nameservers ? {
         ''  => '212.103.67.60:212.103.67.61',
         default => $resolvconf_nameservers,
