@@ -13,23 +13,11 @@ class resolvconf {
         ''  => 'glei.ch',
         default => $resolvconf_search,
     }
+    notice("real_resolvconf_nameservers: $real_resolvconf_nameservers")
     $real_resolvconf_nameservers = $resolvconf_nameservers ? {
         ''  => '212.103.67.60:212.103.67.61',
         default => $resolvconf_nameservers,
     }
-
-#    $real_resolvconf_nameserver1 = $resolvconf_nameserver1 ? {
-#        ''  => '212.103.67.60',
-#        default => $resolvconf_nameserver1,
-#    }
-#    $real_resolvconf_nameserver2 = $resolvconf_nameserver2 ? {
-#        ''  => '212.103.72.231',
-#        default => $resolvconf_nameserver2,
-#    }
-#    $real_resolvconf_nameserver3 = $resolvconf_nameserver3 ? {
-#        ''  => '192.168.1.104',
-#        default => $resolvconf_nameserver3,
-#    }
 
     file { '/etc/resolv.conf':
         path => '/etc/resolv.conf',
