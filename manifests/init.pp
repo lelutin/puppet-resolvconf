@@ -26,8 +26,4 @@ class resolvconf {
         mode => 444,
         content => template("resolvconf/resolvconf.erb")
     }
-
-    if $use_shorewall {
-        include resolvconf::shorewall
-    }
 }
