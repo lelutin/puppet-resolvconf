@@ -20,7 +20,7 @@ class resolvconf {
         default => $resolvconf_domain,
     }
     $real_resolvconf_search = $resolvconf_search ? {
-        ''  => 'rz.puzzle.ch',
+        ''  => 'rz.puzzle.ch worldweb2000.com',
         default => $resolvconf_search,
     }
     $real_resolvconf_nameservers = $resolvconf_nameservers ? {
