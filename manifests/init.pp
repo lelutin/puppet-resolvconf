@@ -15,11 +15,16 @@
 # modules_dir { "resolvconf": }
 
 class resolvconf {
-    case $reseolvconf_domain {
-        '': { fail("you need to define \$reseolvconf_domain for ${fqdn}") }
-    }
-    case $resolvconf_search {
-        '': { fail("you need to define \$reseolvconf_search for ${fqdn}") }
+    case $operatingsystem {
+        openbsd: { info("\$reseolvconf_domain and  \$reseolvconf_search not needed on openbsd") }
+        default: {
+            case $reseolvconf_domain {
+                '': { fail("you need to define \$reseolvconf_domain for ${fqdn}") }
+            }
+            case $resolvconf_search {
+                '': { fail("you need to define \$reseolvconf_search for ${fqdn}") }
+            }
+        }
     }
     case $resolvconf_nameservers {
         '': { fail("you need to define \$reseolvconf_nameservers for ${fqdn}") }
