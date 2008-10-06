@@ -16,18 +16,18 @@
 
 class resolvconf {
     case $operatingsystem {
-        openbsd: { info("\$reseolvconf_domain and  \$reseolvconf_search not needed on openbsd") }
+        openbsd: { info("\$resolvconf_domain and  \$resolvconf_search not needed on openbsd") }
         default: {
-            case $reseolvconf_domain {
-                '': { fail("you need to define \$reseolvconf_domain for ${fqdn}") }
+            case $resolvconf_domain {
+                '': { fail("you need to define \$resolvconf_domain for ${fqdn}") }
             }
             case $resolvconf_search {
-                '': { fail("you need to define \$reseolvconf_search for ${fqdn}") }
+                '': { fail("you need to define \$resolvconf_search for ${fqdn}") }
             }
         }
     }
     case $resolvconf_nameservers {
-        '': { fail("you need to define \$reseolvconf_nameservers for ${fqdn}") }
+        '': { fail("you need to define \$resolvconf_nameservers for ${fqdn}") }
     }
 
     file { '/etc/resolv.conf':
