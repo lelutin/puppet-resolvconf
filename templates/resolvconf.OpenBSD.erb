@@ -1,8 +1,5 @@
 # managed by puppet
-
-domain <%= resolvconf_domain %>
-search <%= resolvconf_search %>
-
+lookup file bind
 <% resolvconf_nameservers.split(':').each do |nameserver| -%> 
 nameserver <%= nameserver %> 
 <% end -%>

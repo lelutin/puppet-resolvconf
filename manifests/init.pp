@@ -15,17 +15,14 @@
 # modules_dir { "resolvconf": }
 
 class resolvconf {
-    $real_resolvconf_domain = $resolvconf_domain ? {
-        ''  => 'glei.ch',
-        default => $resolvconf_domain,
+    case $reseolvconf_domain {
+        '': { fail("you need to define \$reseolvconf_domain for ${fqdn}") }
     }
-    $real_resolvconf_search = $resolvconf_search ? {
-        ''  => 'glei.ch',
-        default => $resolvconf_search,
+    $resolvconf_search {
+        '': { fail("you need to define \$reseolvconf_search for ${fqdn}") }
     }
-    $real_resolvconf_nameservers = $resolvconf_nameservers ? {
-        ''  => '212.103.67.60:212.103.67.61',
-        default => $resolvconf_nameservers,
+    $resolvconf_nameservers {
+        '': { fail("you need to define \$reseolvconf_nameservers for ${fqdn}") }
     }
 
     file { '/etc/resolv.conf':
@@ -33,6 +30,9 @@ class resolvconf {
         owner => root,
         group => 0,
         mode => 444,
-        content => template("resolvconf/resolvconf.erb")
+        content => $operatingsystem ? {
+            openbsd => template("resolvconf/resolvconf.${operatingsystem}.erb"),
+            default => template('resolvconf/resolvconf.erb'),
+        }
     }
 }
