@@ -18,10 +18,10 @@ class resolvconf {
     case $reseolvconf_domain {
         '': { fail("you need to define \$reseolvconf_domain for ${fqdn}") }
     }
-    $resolvconf_search {
+    case $resolvconf_search {
         '': { fail("you need to define \$reseolvconf_search for ${fqdn}") }
     }
-    $resolvconf_nameservers {
+    case $resolvconf_nameservers {
         '': { fail("you need to define \$reseolvconf_nameservers for ${fqdn}") }
     }
 
