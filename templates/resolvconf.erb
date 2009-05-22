@@ -3,6 +3,6 @@
 domain <%= resolvconf_domain %>
 search <%= resolvconf_search %>
 
-<% resolvconf_nameservers.split(':').each do |nameserver| -%> 
+<%- resolvconf_nameservers.split(':').each do |nameserver| -%> 
 nameserver <%= nameserver %> 
-<% end -%>
+<%- end -%>
