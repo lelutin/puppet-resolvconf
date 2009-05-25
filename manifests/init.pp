@@ -15,17 +15,19 @@
 # modules_dir { "resolvconf": }
 
 class resolvconf {
-    $real_resolvconf_domain = $resolvconf_domain ? {
-        ''  => 'rz.puzzle.ch',
-        default => $resolvconf_domain,
+    case $operatingsystem {
+        openbsd: { info("\$resolvconf_domain and  \$resolvconf_search not needed on openbsd") }
+        default: {
+            case $resolvconf_domain {
+                '': { fail("you need to define \$resolvconf_domain for ${fqdn}") }
+            }
+            case $resolvconf_search {
+                '': { fail("you need to define \$resolvconf_search for ${fqdn}") }
+            }
+        }
     }
-    $real_resolvconf_search = $resolvconf_search ? {
-        ''  => 'rz.puzzle.ch worldweb2000.com',
-        default => $resolvconf_search,
-    }
-    $real_resolvconf_nameservers = $resolvconf_nameservers ? {
-        ''  => '195.141.101.81:195.141.101.82',
-        default => $resolvconf_nameservers,
+    case $resolvconf_nameservers {
+        '': { fail("you need to define \$resolvconf_nameservers for ${fqdn}") }
     }
 
     file { '/etc/resolv.conf':
@@ -33,6 +35,9 @@ class resolvconf {
         owner => root,
         group => 0,
         mode => 444,
-        content => template("resolvconf/resolvconf.erb")
+        content => $operatingsystem ? {
+            openbsd => template("resolvconf/resolvconf.${operatingsystem}.erb"),
+            default => template('resolvconf/resolvconf.erb'),
+        }
     }
 }

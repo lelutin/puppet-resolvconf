@@ -1,8 +1,7 @@
 # managed by puppet
+domain <%= resolvconf_domain %>
+search <%= resolvconf_search %>
 
-domain <%= real_resolvconf_domain %>
-search <%= real_resolvconf_search %>
-
-<% real_resolvconf_nameservers.split(':').each do |val| -%> 
-nameserver <%= val %> 
-<% end -%>
+<%- resolvconf_nameservers.split(':').each do |nameserver| -%>
+nameserver <%= nameserver %>
+<%- end -%>
