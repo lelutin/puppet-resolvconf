@@ -12,8 +12,6 @@
 # the Free Software Foundation.
 #
 
-# modules_dir { "resolvconf": }
-
 class resolvconf {
     case $operatingsystem {
         openbsd: { info("\$resolvconf_domain and  \$resolvconf_search not needed on openbsd") }
