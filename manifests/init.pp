@@ -13,28 +13,11 @@
 #
 
 class resolvconf {
-  case $operatingsystem {
-    openbsd: {
-      info('$resolvconf_domain and $resolvconf_search not needed on openbsd')
-    }
-    default: {
-      if ! $resolvconf_domain {
-        fail("you need to define \$resolvconf_domain for ${fqdn}")
-      }
-      if ! $resolvconf_search {
-        fail("you need to define \$resolvconf_search for $fqdn")
-      }
-    }
-  }
-  if ! $resolvconf_nameservers {
-    fail("you need to define \$resolvconf_nameservers for $fqdn")
-  }
   file{'/etc/resolv.conf':
-    path => '/etc/resolv.conf',
-    owner => root, group => 0, mode => 0444,
     content => $operatingsystem ? {
       openbsd => template("resolvconf/resolvconf.$operatingsystem.erb"),
       default => template('resolvconf/resolvconf.erb'),
     }
+    owner => root, group => 0, mode => 0444;
   }
 }
