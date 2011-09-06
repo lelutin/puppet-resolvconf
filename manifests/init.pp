@@ -17,7 +17,7 @@ class resolvconf {
     content => $operatingsystem ? {
       openbsd => template("resolvconf/resolvconf.$operatingsystem.erb"),
       default => template('resolvconf/resolvconf.erb'),
-    }
+    },
     owner => root, group => 0, mode => 0444;
   }
 }
