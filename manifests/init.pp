@@ -12,7 +12,11 @@
 # the Free Software Foundation.
 #
 
-class resolvconf {
+class resolvconf(
+  $domain = $::domain,  
+  $search = $::domain,
+  $nameservers = [ '8.8.8.8' ]
+) {
   file{'/etc/resolv.conf':
     content => $::operatingsystem ? {
       openbsd => template("resolvconf/resolvconf.${::operatingsystem}.erb"),

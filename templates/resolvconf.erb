@@ -1,8 +1,7 @@
 # managed by puppet
-<% Puppet::Parser::Functions.function('hiera') -%>
-domain <%= scope.function_hiera('resolvconf_domain',domain) %>
-search <%= scope.function_hiera('resolvconf_search',domain) %>
+domain <%= scope.lookupvar('resolvconf::domain') %>
+search <%= scope.lookupvar('resolvconf::search') %>
 
-<% scope.function_hiera('resolvconf_nameservers',['8.8.8.8']).each do |nameserver| -%>
+<% scope.lookupvar('resolvconf::nameservers').each do |nameserver| -%>
 nameserver <%= nameserver %>
 <% end -%>
