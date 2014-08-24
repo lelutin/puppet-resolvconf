@@ -1,6 +1,10 @@
 # managed by puppet
-<% if @domain -%>domain <%= @domain  %><% end -%>
-<% if @search -%>search <%= @search %><% end -%>
+<% if @domain -%>
+domain <%= @domain  %>
+<% end -%>
+<% if @search -%>
+search <%= @search %>
+<% end -%>
 
 <% Array(@nameservers).each do |nameserver| -%>
 nameserver <%= nameserver %>
