@@ -18,7 +18,8 @@ class resolvconf(
   $nameservers = [
     '77.109.138.45',
     '77.109.139.29',
-  ]
+  ],
+  $options = ''
 ) {
   $content = $::operatingsystem ? {
     openbsd => template("resolvconf/resolvconf.${::operatingsystem}.erb"),

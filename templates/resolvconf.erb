@@ -9,3 +9,6 @@ search <%= @search %>
 <% Array(@nameservers).each do |nameserver| -%>
 nameserver <%= nameserver %>
 <% end -%>
+<% if not @options.empty? -%>
+options <%= options %>
+<% end -%>
